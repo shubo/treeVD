@@ -13,12 +13,12 @@ Then you can simply download and include treeVD.js
 
 ```html
 <script src="res/treeVD.js"></script>
-``` 
+```
 
 ## Getting Started
 ### For creating tree
 
 ```javascript
-let treeParams = {name: treeName, data: treeVD.getTreeData(treeName)};
-tree = treeVD.draw(treeContainer, treeParams, treeItemSelectEvent);
+let treeParams = {name: treeName, data: jsTreeJSONData};
+let tree = treeVD.draw(treeContainer, treeParams, treeItemSelectEvent);
 ```
