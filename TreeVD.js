@@ -17,32 +17,43 @@ let treeVD = (function(){
     }) || {};
   };
 
-  function setTree(treeName, treeData){
+  function setTree(treeParams){
 
-    let treeObj = getTree(treeName);
+    if(!treeParams || !treeParams.name || !treeParams.data){
+
+      console.error('Tree params has not properly setted: ', treeParams.toSource());
+      return false;
+    }
+
+    let treeObj = getTree(treeParams.name);
 
     if(Object.keys(treeObj).length > 0){
 
-      treeObj.data = treeData;
+      treeObj.data = treeParams.data;
 
     }else{
 
-      trees.push({name: treeName, data: treeData});
+      trees.push(treeParams);
     }
   };
 
-  function draw(container, treeObj, onSelectCallback){
+  function draw(container, treeParams, onSelectCallback){
+
+    if(!treeParams || !treeParams.name){
+
+      console.error('Tree params has not properly setted: ', treeParams.toSource());
+      return false;
+    }
 
     let treeData;
 
-    if(treeObj.data && Object.keys(treeObj.data).length > 0){
+    if(treeParams.data && Object.keys(treeParams.data).length > 0){
 
-      treeData = treeObj.data;
-      setTree(treeObj.name, treeData);
+      treeData = treeParams.data;
 
     }else{
 
-      treeData = getTreeData(treeObj.name);
+      treeData = getTreeData(treeParams.name);
     }
 
     let inputDataTree = container.children();
@@ -67,7 +78,7 @@ let treeVD = (function(){
       }
     });
 
-    onSelect(inputDataTree, onSelectCallback);
+    inputDataTree.onSelect(onSelectCallback);
 
     return inputDataTree;
   };
@@ -89,12 +100,11 @@ let treeVD = (function(){
     return getTree(treeName).data || [];
   };
 
-  function onSelect(tree, callback){
+  $.fn.onSelect = function(callback){
 
-    tree.on("changed.jstree", function (e, data) {
+    $(this).on("changed.jstree", function (e, data) {
 
-      let treeItem = data.instance.get_node(data.selected[0]);
-      callback(treeItem);
+      callback( data.instance.get_node(data.selected[0]) );
     });
   };
 
