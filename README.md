@@ -1,7 +1,7 @@
 # treeVD
 treeVD is tool which helps to work with [jsTree](https://www.jstree.com/)
 
-## Before starting use this tool you need add jQuery and jsTree
+## Before starting you need add jQuery and jsTree
 
 ```html
 <script src="//cdnjs.cloudflare.com/ajax/libs/jquery/3.1.1/jquery.min.js"></script>
@@ -16,7 +16,7 @@ Then you can simply download and include treeVD.js
 ```
 
 ## Getting Started
-### For creating tree
+### For create tree
 
 ```javascript
 let treeParams = {name: 'treeName', data: jsTreeJSONData};
