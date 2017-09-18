@@ -19,6 +19,12 @@ Then you can simply download and include treeVD.js
 ### For creating tree
 
 ```javascript
-let treeParams = {name: treeName, data: jsTreeJSONData};
+let treeParams = {name: 'treeName', data: jsTreeJSONData};
+let treeContainer = $('#container');
+
+function treeItemSelectEvent(selectedItem){
+  console.log(selectedItem.text);
+}
+
 let tree = treeVD.draw(treeContainer, treeParams, treeItemSelectEvent);
 ```
