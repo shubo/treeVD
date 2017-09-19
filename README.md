@@ -29,10 +29,23 @@ let treeParams = {
     }
   ]};
 let treeContainer = $('#container');
+let treeItem;
 
 function treeItemSelectEvent(selectedItem){
-  console.log(selectedItem.text);
+
+  treeItem = selectedItem;
+  console.log('Selected item text: ', selectedItem.text);
+  console.log('Selected item ID: ', selectedItem.id);
 }
 
 let tree = treeVD.draw(treeContainer, treeParams, treeItemSelectEvent);
+```
+Add new branch to selected branch
+
+```javascript
+treeVD.createBranch(tree, {label: 'newBranchLabel', id: treeItem.id});
+```
+or add new branch to root
+```javascript
+treeVD.createBranch(tree, {label: 'newBranchLabel'});
 ```
