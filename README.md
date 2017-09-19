@@ -40,7 +40,7 @@ function treeItemSelectEvent(selectedItem){
 
 let tree = treeVD.draw(treeContainer, treeParams, treeItemSelectEvent);
 ```
-Add new branch to selected branch
+### Add new branch to selected branch
 
 ```javascript
 treeVD.createBranch(tree, {label: 'newBranchLabel', id: treeItem.id});
