@@ -20,6 +20,10 @@ Then you can simply download and include treeVD.js
 ## Getting Started
 ### For create tree
 
+```html
+<div id="container"></div>
+```
+
 ```javascript
 let treeParams = {
   name: 'treeName',
@@ -50,4 +54,22 @@ treeVD.createBranch(tree, {label: 'newBranchLabel', id: treeItem.id});
 or add new branch to root
 ```javascript
 treeVD.createBranch(tree, {label: 'newBranchLabel'});
+```
+
+### Edit selected branch
+
+```javascript
+treeVD.setEditedBranch(tree, {label: 'editedBranchLabel', item: treeItem} );
+```
+
+### Delete selected branch
+
+```javascript
+treeVD.deleteBranch(tree, treeItem.id);
+```
+
+### Destroy tree
+
+```javascript
+treeVD.destroy(tree);
 ```
