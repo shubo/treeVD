@@ -19,7 +19,15 @@ Then you can simply download and include treeVD.js
 ### For create tree
 
 ```javascript
-let treeParams = {name: 'treeName', data: jsTreeJSONData};
+let treeParams = {
+  name: 'treeName',
+  data: [    
+    { 'text' : 'Root node', 'children' : [
+        { 'text' : 'Child node 1' },
+        { 'text' : 'Child node 2' }
+      ]
+    }
+  ]};
 let treeContainer = $('#container');
 
 function treeItemSelectEvent(selectedItem){
