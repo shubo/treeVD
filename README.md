@@ -3,6 +3,8 @@ treeVD is tool which helps to work with [jsTree](https://www.jstree.com/)
 
 [![Build Status](https://travis-ci.org/shubo/treeVD.svg?branch=master)](https://travis-ci.org/shubo/treeVD)
 
+[![Build Status](https://bestpractices.coreinfrastructure.org/projects/1283/badge)
+
 ## Before starting you need add jQuery and jsTree
 
 ```html
