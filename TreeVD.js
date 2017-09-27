@@ -8,7 +8,7 @@ let treeVD = (function(){
     max = Math.floor(max);
 
     return Math.floor(Math.random() * (max - min)) + min;
-  };
+  }
 
   function getTreeItemByName(tree, itemName){
 
@@ -25,20 +25,20 @@ let treeVD = (function(){
         break;
       }
     }
-  };
+  }
 
   function selectTreeItemByName(tree, itemName){
 
     let treeItem = getTreeItemByName(tree, itemName);
     tree.jstree(true).select_node(treeItem.id);
-  };
+  }
 
   function getTree(treeName){
 
     return trees.find(function(treeObj){
       return treeObj.name == treeName;
     }) || {};
-  };
+  }
 
   function setTree(treeParams){
 
@@ -58,7 +58,7 @@ let treeVD = (function(){
 
       trees.push(treeParams);
     }
-  };
+  }
 
   function draw(container, treeParams, onSelectCallback){
 
@@ -104,7 +104,7 @@ let treeVD = (function(){
     inputDataTree.onSelect(onSelectCallback);
 
     return inputDataTree;
-  };
+  }
 
   function getJSON(tree){
 
@@ -116,12 +116,12 @@ let treeVD = (function(){
 
       return [];
     }
-  };
+  }
 
   function getTreeData(treeName){
 
     return getTree(treeName).data || [];
-  };
+  }
 
   $.fn.onSelect = function(callback){
 
@@ -129,11 +129,11 @@ let treeVD = (function(){
 
       callback( data.instance.get_node(data.selected[0]) );
     });
-  };
+  }
 
   function setEditedBranch(tree, branch){
     tree.jstree('rename_node', branch.item, branch.label );
-  };
+  }
 
   function editBranchData(treeName, oldVar, newVar){
 
@@ -151,12 +151,12 @@ let treeVD = (function(){
           let splitterIndex = txt.indexOf(':');
           let branchVal = txt.substring(splitterIndex, txt.length)
           searchedRootTag.text = newVar + branchVal;
-          
+
           return true;
 
         }else{
 
-          for(data of treeData){
+          for(let data of treeData){
 
             if( edit(data.children || [], oldVar, newVar) ){
               return true;
@@ -166,22 +166,22 @@ let treeVD = (function(){
         }
 
       }
-    };
+    }
 
     let treeData = getTreeData(treeName);
     // [{id: '', text: '', children: [{id, text, children}] }, {}]
 
     return edit(treeData, oldVar, newVar);
-  };
+  }
 
   function createBranch(tree, branch){
     tree.jstree().create_node(branch.id || '#', { text : branch.label }, "last");
-  };
+  }
 
   function deleteBranch(tree, branchID){
 
     tree.jstree(true).delete_node([branchID]);
-  };
+  }
 
   function destroy(tree){
 
@@ -193,7 +193,7 @@ let treeVD = (function(){
 
     tree.jstree('destroy');
     tree.remove();
-  };
+  }
 
   return {
     setTree: setTree,
