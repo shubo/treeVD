@@ -10,6 +10,29 @@ let treeVD = (function(){
     return Math.floor(Math.random() * (max - min)) + min;
   };
 
+  function getTreeItemByName(tree, itemName){
+
+    let instance = tree.jstree(true);
+    let branchCont = instance._model.data;
+
+    for(let branchKey in branchCont) {
+
+      let branch = branchCont[branchKey];
+
+      if(branch.text && branch.text.split(':')[0] === itemName) {
+
+        return branch;
+        break;
+      }
+    }
+  };
+
+  function selectTreeItemByName(tree, itemName){
+
+    let treeItem = getTreeItemByName(tree, itemName);
+    tree.jstree(true).select_node(treeItem.id);
+  };
+
   function getTree(treeName){
 
     return trees.find(function(treeObj){
@@ -91,7 +114,7 @@ let treeVD = (function(){
 
     }else{
 
-      return {};
+      return [];
     }
   };
 
@@ -110,6 +133,45 @@ let treeVD = (function(){
 
   function setEditedBranch(tree, branch){
     tree.jstree('rename_node', branch.item, branch.label );
+  };
+
+  function editBranchData(treeName, oldVar, newVar){
+
+    function edit(treeData, oldVar, newVar){
+
+      if(treeData.length){
+
+        let searchedRootTag = treeData.find(function(data){
+          return data.text.split(':')[0].trim() === oldVar;
+        });
+
+        if(searchedRootTag){
+
+          let txt = searchedRootTag.text;
+          let splitterIndex = txt.indexOf(':');
+          let branchVal = txt.substring(splitterIndex, txt.length)
+          searchedRootTag.text = newVar + branchVal;
+          
+          return true;
+
+        }else{
+
+          for(data of treeData){
+
+            if( edit(data.children || [], oldVar, newVar) ){
+              return true;
+            }
+
+          }
+        }
+
+      }
+    };
+
+    let treeData = getTreeData(treeName);
+    // [{id: '', text: '', children: [{id, text, children}] }, {}]
+
+    return edit(treeData, oldVar, newVar);
   };
 
   function createBranch(tree, branch){
@@ -138,8 +200,11 @@ let treeVD = (function(){
     draw: draw,
     getJSON: getJSON,
     getTreeData: getTreeData,
+    getTreeItemByName: getTreeItemByName,
+    selectTreeItemByName: selectTreeItemByName,
     destroy: destroy,
     setEditedBranch: setEditedBranch,
+    editBranchData: editBranchData,
     createBranch: createBranch,
     deleteBranch: deleteBranch
   }
