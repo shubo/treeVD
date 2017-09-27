@@ -36,7 +36,7 @@ let treeVD = (function(){
   function getTree(treeName){
 
     return trees.find(function(treeObj){
-      return treeObj.name == treeName;
+      return treeObj.name === treeName;
     }) || {};
   }
 
@@ -81,7 +81,7 @@ let treeVD = (function(){
 
     let inputDataTree = container.children();
 
-    if(inputDataTree.length == 0){
+    if(inputDataTree.length === 0){
 
       let id = getRandom(1, 10000);
       container.html('<div id="treeVD-'+id+'"></div>');
