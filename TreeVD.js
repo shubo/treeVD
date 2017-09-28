@@ -22,7 +22,6 @@ let treeVD = (function(){
       if(branch.text && branch.text.split(':')[0] === itemName) {
 
         return branch;
-        break;
       }
     }
   }
@@ -149,7 +148,7 @@ let treeVD = (function(){
 
           let txt = searchedRootTag.text;
           let splitterIndex = txt.indexOf(':');
-          let branchVal = txt.substring(splitterIndex, txt.length)
+          let branchVal = txt.substring(splitterIndex, txt.length);
           searchedRootTag.text = newVar + branchVal;
 
           return true;
@@ -207,5 +206,5 @@ let treeVD = (function(){
     editBranchData: editBranchData,
     createBranch: createBranch,
     deleteBranch: deleteBranch
-  }
+  };
 }());
