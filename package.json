@@ -1,0 +1,9 @@
+{
+  "name": "TreeVD",
+  "scripts": {
+    "test": "ava"
+  },
+  "devDependencies": {
+    "ava": "^0.20.0"
+  }
+}
