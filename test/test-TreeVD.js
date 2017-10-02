@@ -1,4 +1,4 @@
 import test from 'ava';
-test('test', t => {
-  t.pass();
+test('test', function(t){
+    t.pass();
 });
