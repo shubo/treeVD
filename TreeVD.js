@@ -43,7 +43,12 @@ let treeVD = (function(){
 
     if(!treeParams || !treeParams.name || !treeParams.data){
 
-      console.error('Tree params has not properly setted: ', treeParams.toSource());
+      console.error('Tree params has not properly setted');
+      return false;
+    }
+
+    if( typeof treeParams.name !== 'string' || !Array.isArray(treeParams.data) ){
+      
       return false;
     }
 
@@ -57,6 +62,8 @@ let treeVD = (function(){
 
       trees.push(treeParams);
     }
+    
+    return true;
   }
 
   function draw(container, treeParams, onSelectCallback){
@@ -122,13 +129,13 @@ let treeVD = (function(){
     return getTree(treeName).data || [];
   }
 
-  $.fn.onSelect = function(callback){
+  // $.fn.onSelect = function(callback){
 
-    $(this).on("changed.jstree", function (e, data) {
+  //   $(this).on("changed.jstree", function (e, data) {
 
-      callback( data.instance.get_node(data.selected[0]) );
-    });
-  }
+  //     callback( data.instance.get_node(data.selected[0]) );
+  //   });
+  // }
 
   function setEditedBranch(tree, branch){
     tree.jstree('rename_node', branch.item, branch.label );
@@ -208,3 +215,6 @@ let treeVD = (function(){
     deleteBranch: deleteBranch
   };
 }());
+
+
+module.exports = treeVD;
