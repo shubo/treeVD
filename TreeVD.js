@@ -129,13 +129,13 @@ let treeVD = (function(){
     return getTree(treeName).data || [];
   }
 
-  // $.fn.onSelect = function(callback){
+  $.fn.onSelect = function(callback){
 
-  //   $(this).on("changed.jstree", function (e, data) {
+    $(this).on("changed.jstree", function (e, data) {
 
-  //     callback( data.instance.get_node(data.selected[0]) );
-  //   });
-  // }
+      callback( data.instance.get_node(data.selected[0]) );
+    });
+  };
 
   function setEditedBranch(tree, branch){
     tree.jstree('rename_node', branch.item, branch.label );
