@@ -215,6 +215,3 @@ let treeVD = (function(){
     deleteBranch: deleteBranch
   };
 }());
-
-
-module.exports = treeVD;

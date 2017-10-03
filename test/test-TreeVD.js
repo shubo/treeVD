@@ -2,7 +2,7 @@ import test from 'ava';
 import treeVD from '../TreeVD';
 
 
-test('test of setTree', t=>{
+test('setTree', t=>{
     
     t.true( treeVD.setTree({name: 'treeName', data: []}) );
     
@@ -19,3 +19,19 @@ test('test of setTree', t=>{
     t.false( treeVD.setTree({}) );
 });
 
+test('getTree', t => {
+    
+    treeVD.setTree({name: 'treeName', data: [{id: 1, text: 'root', children:[]}]})
+    
+    t.deepEqual( treeVD.getTreeData(), [] );
+    
+    t.deepEqual( treeVD.getTreeData([]), [] );
+    
+    t.deepEqual( treeVD.getTreeData({}), [] );
+    
+    t.deepEqual( treeVD.getTreeData(121), [] );
+    
+    t.deepEqual( treeVD.getTreeData("sds"), [] );
+    
+    t.true(Array.isArray(treeVD.getTreeData("treeName")) );
+});
