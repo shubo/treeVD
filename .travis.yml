@@ -1,1 +1,7 @@
 language: node_js
+notifications:
+    email: shubo.on@gmail.com
+    on_success: always
+    on_failure: never
+node_js: "8"
+before_install: npm install --save-dev ava

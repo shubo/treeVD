@@ -20,7 +20,6 @@ Then you can simply download and include treeVD.js
 
 ## Getting Started
 ### For create tree
-
 ```html
 <div id="container"></div>
 ```
@@ -48,7 +47,6 @@ function treeItemSelectEvent(selectedItem){
 let tree = treeVD.draw(treeContainer, treeParams, treeItemSelectEvent);
 ```
 ### Add new branch to selected branch
-
 ```javascript
 treeVD.createBranch(tree, {label: 'newBranchLabel', id: treeItem.id});
 ```
@@ -58,15 +56,19 @@ treeVD.createBranch(tree, {label: 'newBranchLabel'});
 ```
 
 ### Edit selected branch
-
 ```javascript
 treeVD.setEditedBranch(tree, {label: 'editedBranchLabel', item: treeItem} );
 ```
 
 ### Delete selected branch
-
 ```javascript
 treeVD.deleteBranch(tree, treeItem.id);
+```
+
+### If Tree setted but not drawed then you can edit it too. 
+#### Unlike setEditedBranch function, editBranchData will edit branchs just which have value ( branchLabel: branchValue )
+```javascript
+treeVD.editBranchData(treeName, oldVar, newVar);
 ```
 
 ### Destroy tree
